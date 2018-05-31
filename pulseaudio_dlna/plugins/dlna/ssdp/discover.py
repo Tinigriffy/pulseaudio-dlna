@@ -15,8 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
+from __future__ import division
 
+from future import standard_library
+standard_library.install_aliases()
+from builtins import range
+from builtins import object
+from past.utils import old_div
 import socket
 import logging
 import chardet
@@ -99,7 +104,7 @@ class SSDPDiscover(object):
 
         for i in range(1, ssdp_amount + 1):
             t = threading.Timer(
-                float(i) / 2, self._send_discover, args=[sock, ssdp_mx])
+                old_div(float(i), 2), self._send_discover, args=[sock, ssdp_mx])
             t.start()
 
         while True:
@@ -123,6 +128,6 @@ class SSDPDiscover(object):
                 sock.setsockopt(
                     socket.SOL_IP, socket.IP_MULTICAST_IF,
                     socket.inet_aton(addr))
-                sock.sendto(msg, (self.SSDP_ADDRESS, self.SSDP_PORT))
+                sock.sendto(msg.encode(), (self.SSDP_ADDRESS, self.SSDP_PORT))
         else:
-            sock.sendto(msg, (self.SSDP_ADDRESS, self.SSDP_PORT))
+            sock.sendto(msg.encode(), (self.SSDP_ADDRESS, self.SSDP_PORT))

@@ -16,7 +16,10 @@
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import unicode_literals
+from __future__ import absolute_import
 
+from builtins import str
+from builtins import object
 import logging
 import time
 import traceback
@@ -27,7 +30,7 @@ import pulseaudio_dlna.workarounds
 import pulseaudio_dlna.codecs
 import pulseaudio_dlna.rules
 import pulseaudio_dlna.plugins.renderer
-import pyupnpv2
+from . import pyupnpv2
 
 logger = logging.getLogger('pulseaudio_dlna.plugins.dlna.renderer')
 
@@ -123,8 +126,7 @@ class DLNAMediaRenderer(pulseaudio_dlna.plugins.renderer.BaseRenderer):
                 pyupnpv2.ConnectionErrorException,
                 pyupnpv2.ConnectionTimeoutException,
                 pulseaudio_dlna.plugins.renderer.NoEncoderFoundException,
-                pulseaudio_dlna.plugins.renderer.NoSuitableHostFoundException)\
-                as e:
+                pulseaudio_dlna.plugins.renderer.NoSuitableHostFoundException) as e:
             return 500, '"{}" : {}'.format(self.label, str(e))
         except Exception:
             traceback.print_exc()

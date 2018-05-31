@@ -29,7 +29,7 @@ setuptools.setup(
     platforms="Debian GNU/Linux",
     classifiers=[
         "Development Status :: 4 - Beta",
-        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python ::3",
         "Environment :: Console",
         "Topic :: Multimedia :: Sound/Audio",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
@@ -44,7 +44,6 @@ setuptools.setup(
         "protobuf >= 2.5.0",
         "notify2 >= 0.3",
         "psutil >= 1.2.1",
-        "futures >= 2.1.6",
         "chardet >= 2.0.1",
         "pyroute2 >= 0.3.5",
         "netifaces >= 0.8",

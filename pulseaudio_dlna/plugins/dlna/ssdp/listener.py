@@ -17,9 +17,12 @@
 
 from __future__ import unicode_literals
 
+from future import standard_library
+standard_library.install_aliases()
+from builtins import object
 from gi.repository import GObject
 
-import SocketServer
+import socketserver
 import logging
 import socket
 import struct
@@ -32,7 +35,7 @@ import pulseaudio_dlna.plugins.dlna.ssdp
 logger = logging.getLogger('pulseaudio_dlna.plugins.dlna.ssdp')
 
 
-class SSDPHandler(SocketServer.BaseRequestHandler):
+class SSDPHandler(socketserver.BaseRequestHandler):
 
     SSDP_ALIVE = 'ssdp:alive'
     SSDP_BYEBYE = 'ssdp:byebye'
@@ -70,7 +73,7 @@ class SSDPHandler(SocketServer.BaseRequestHandler):
         return method_header.split(' ')[0]
 
 
-class SSDPListener(SocketServer.UDPServer):
+class SSDPListener(socketserver.UDPServer):
 
     SSDP_ADDRESS = '239.255.255.250'
     SSDP_PORT = 1900
@@ -89,7 +92,7 @@ class SSDPListener(SocketServer.UDPServer):
             return
 
         self.allow_reuse_address = True
-        SocketServer.UDPServer.__init__(
+        socketserver.UDPServer.__init__(
             self, (self.host or '', self.SSDP_PORT), SSDPHandler)
         self.socket.setsockopt(
             socket.IPPROTO_IP,
@@ -112,7 +115,7 @@ class SSDPListener(SocketServer.UDPServer):
             '4sl', socket.inet_aton(address), socket.INADDR_ANY)
 
 
-class GobjectMainLoopMixin:
+class GobjectMainLoopMixin(object):
 
     def serve_forever(self, poll_interval=0.5):
         self.__running = False
@@ -148,5 +151,5 @@ class GobjectMainLoopMixin:
 
 
 class ThreadedSSDPListener(
-        GobjectMainLoopMixin, SocketServer.ThreadingMixIn, SSDPListener):
+        GobjectMainLoopMixin, socketserver.ThreadingMixIn, SSDPListener):
     pass

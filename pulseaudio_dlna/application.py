@@ -16,7 +16,10 @@
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import unicode_literals
+from __future__ import print_function
 
+from builtins import str
+from builtins import object
 import multiprocessing
 import signal
 import setproctitle
@@ -213,7 +216,7 @@ class Application(object):
             logger.info('  {}'.format(encoder))
 
         logger.info('Codec settings:')
-        for identifier, _type in pulseaudio_dlna.codecs.CODECS.iteritems():
+        for identifier, _type in pulseaudio_dlna.codecs.CODECS.items():
             codec = _type()
             logger.info('  {}'.format(codec))
 
@@ -333,7 +336,7 @@ class Application(object):
                 with open(config_file, 'w') as h:
                     h.write(json_text.encode(self.ENCODING))
                     logger.info('Found the following devices:')
-                    for device in holder.devices.values():
+                    for device in list(holder.devices.values()):
                         logger.info('{name} ({flavour})'.format(
                             name=device.name, flavour=device.flavour))
                         for codec in device.codecs:

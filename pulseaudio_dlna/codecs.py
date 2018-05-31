@@ -17,6 +17,8 @@
 
 from __future__ import unicode_literals
 
+from builtins import str
+from builtins import object
 import functools
 import logging
 import re
@@ -67,7 +69,7 @@ def set_backend(backend):
 def set_codecs(identifiers):
     step = 3
     priority = (len(CODECS) + 1) * step
-    for identifier, _type in CODECS.iteritems():
+    for identifier, _type in CODECS.items():
         _type.ENABLED = False
         _type.PRIORITY = 0
     for identifier in identifiers:
@@ -81,7 +83,7 @@ def set_codecs(identifiers):
 
 def enabled_codecs():
     codecs = []
-    for identifier, _type in CODECS.iteritems():
+    for identifier, _type in CODECS.items():
         if _type.ENABLED:
             codecs.append(_type())
     return codecs
@@ -94,6 +96,7 @@ class BaseCodec(object):
     IDENTIFIER = None
     BACKEND = 'generic'
     PRIORITY = None
+    BLACKLISTED_MIME_TYPES = []
 
     def __init__(self):
         self.mime_type = None
@@ -133,8 +136,11 @@ class BaseCodec(object):
 
     @classmethod
     def accepts(cls, mime_type):
+        lower_mime_type = mime_type.lower()
+        if lower_mime_type in cls.BLACKLISTED_MIME_TYPES:
+            return False
         for accepted_mime_type in cls.SUPPORTED_MIME_TYPES:
-            if mime_type.lower().startswith(accepted_mime_type.lower()):
+            if lower_mime_type.startswith(accepted_mime_type.lower()):
                 return True
         return False
 
@@ -168,7 +174,7 @@ class BaseCodec(object):
     def to_json(self):
         attributes = ['priority', 'suffix', 'mime_type']
         d = {
-            k: v for k, v in self.__dict__.iteritems()
+            k: v for k, v in self.__dict__.items()
             if k not in attributes
         }
         d['mime_type'] = self.specific_mime_type
@@ -195,6 +201,7 @@ class BitRateMixin(object):
 class Mp3Codec(BitRateMixin, BaseCodec):
 
     SUPPORTED_MIME_TYPES = ['audio/mpeg', 'audio/mp3']
+    BLACKLISTED_MIME_TYPES = ['audio/mpegurl']
     IDENTIFIER = 'mp3'
     ENCODERS = {
         'generic': pulseaudio_dlna.encoders.LameMp3Encoder,

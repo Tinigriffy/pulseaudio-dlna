@@ -18,6 +18,7 @@
 
 from __future__ import unicode_literals
 
+from builtins import object
 import requests
 import logging
 import sys
@@ -40,7 +41,7 @@ logging.basicConfig(
 logger = logging.getLogger('radio')
 
 
-class RadioLauncher():
+class RadioLauncher(object):
 
     PLUGINS = [
         pulseaudio_dlna.plugins.dlna.DLNAPlugin(),
@@ -101,7 +102,7 @@ class RadioLauncher():
         return None
 
     def _get_codec(self, url):
-        for identifier, _type in pulseaudio_dlna.codecs.CODECS.iteritems():
+        for identifier, _type in pulseaudio_dlna.codecs.CODECS.items():
             codec = _type()
             if url.endswith(codec.suffix):
                 return codec
@@ -118,10 +119,10 @@ class RadioLauncher():
         holder = pulseaudio_dlna.holder.Holder(self.PLUGINS)
         holder.search(ttl=5)
         logger.info('Found the following devices:')
-        for udn, device in holder.devices.items():
+        for udn, device in list(holder.devices.items()):
             logger.info('  - "{name}" ({flavour})'.format(
                 name=device.name, flavour=device.flavour))
-        return holder.devices.values()
+        return list(holder.devices.values())
 
 # Local pulseaudio-dlna installations running in a virutalenv should run this
 #   script as module:

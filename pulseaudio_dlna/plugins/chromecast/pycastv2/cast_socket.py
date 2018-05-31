@@ -16,7 +16,10 @@
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import unicode_literals
+from __future__ import absolute_import
 
+from builtins import str
+from builtins import object
 import ssl
 import socket
 import logging
@@ -26,7 +29,7 @@ import time
 import traceback
 import select
 
-import cast_channel_pb2
+from . import cast_channel_pb2
 
 logger = logging.getLogger('pycastv2.cast_socket')
 

@@ -17,21 +17,21 @@
 
 from __future__ import unicode_literals
 
-import re
+from re import findall,search,RegexFlag
 
 
 def _get_header_map(header):
-    header = re.findall(r"(?P<name>.*?):(?P<value>.*?)\n", header)
+    header = findall(r"(?P<name>.*?):(?P<value>.*?)\n", header)
     header = {
-        k.strip().lower(): v.strip() for k, v in dict(header).items()
+        k.strip().lower(): v.strip() for k, v in list(dict(header).items())
     }
     return header
 
 
 def _get_device_id(header):
     if 'usn' in header:
-        match = re.search(
-            "(uuid:.*?)::(.*)", header['usn'], re.IGNORECASE)
+        match = search(
+            "(uuid:.*?)::(.*)", header['usn'], RegexFlag.IGNORECASE)
         if match:
             return match.group(1)
     return None

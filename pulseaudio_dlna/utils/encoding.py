@@ -17,6 +17,7 @@
 
 from __future__ import unicode_literals
 
+from builtins import chr
 import logging
 import sys
 import locale
@@ -45,7 +46,7 @@ def decode_default(bytes):
         'utf-8': 'utf-8',
         'latin1': 'latin1',
     }
-    for encoding in encodings.values():
+    for encoding in list(encodings.values()):
         if encoding and encoding != 'ascii':
             try:
                 return bytes.decode(encoding)
@@ -57,7 +58,7 @@ def decode_default(bytes):
         logger.error(
             'Decoding failed using the following encodings: "{}"'.format(
                 ','.join(
-                    ['{}:{}'.format(f, e) for f, e in encodings.items()]
+                    ['{}:{}'.format(f, e) for f, e in list(encodings.items())]
                 )))
         return 'Unknown'
 

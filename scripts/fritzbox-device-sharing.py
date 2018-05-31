@@ -17,7 +17,9 @@
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import unicode_literals
+from __future__ import print_function
 
+from builtins import object
 import requests
 import sys
 import json
@@ -58,7 +60,7 @@ SHARE_PATTERN = """#############################################################
 """
 
 
-class IPDetector():
+class IPDetector(object):
 
     TIMEOUT = 5
 
@@ -77,7 +79,7 @@ class IPDetector():
         return None
 
 
-class DLNADiscover():
+class DLNADiscover(object):
 
     PLUGINS = [
         pulseaudio_dlna.plugins.dlna.DLNAPlugin(),
@@ -94,7 +96,7 @@ class DLNADiscover():
     def _discover_devices(self):
         holder = pulseaudio_dlna.holder.Holder(self.PLUGINS)
         holder.search(ttl=self.TIMEOUT)
-        return holder.devices.values()
+        return list(holder.devices.values())
 
 
 ip_detector = IPDetector()

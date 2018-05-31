@@ -17,6 +17,9 @@
 
 from __future__ import unicode_literals
 
+from builtins import str
+from past.builtins import basestring
+from builtins import object
 import functools
 import logging
 import inspect
@@ -63,7 +66,7 @@ class BaseRule(object):
     def to_json(self):
         attributes = []
         d = {
-            k: v for k, v in self.__dict__.iteritems()
+            k: v for k, v in self.__dict__.items()
             if k not in attributes
         }
         d['name'] = str(self)
@@ -122,7 +125,7 @@ class Rules(list):
                 except KeyError:
                     raise RuleNotFoundException(name)
                 attributes = ['name']
-                for k, v in arg.iteritems():
+                for k, v in arg.items():
                     if hasattr(rule, k) and k not in attributes:
                         setattr(rule, k, v)
                 self._add_rule(rule)

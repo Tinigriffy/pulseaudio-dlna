@@ -15,8 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
 
+from builtins import bytes
+from builtins import str
+from builtins import object
 from gi.repository import GObject
 
 import sys
@@ -227,13 +229,13 @@ class PulseAudio(object):
                 'org.PulseAudio.ServerLookup1',
                 'Address',
                 dbus_interface='org.freedesktop.DBus.Properties')
-            return unicode(address)
+            return str(address)
         except dbus.exceptions.DBusException:
             return None
 
     def get_modules(self):
         process = subprocess.Popen(
-            ['pactl', 'list', 'modules', 'short'],
+            ['pactl', 'list', 'modules', 'short'],universal_newlines=True,
             stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
         if process.returncode == 0:
@@ -244,7 +246,7 @@ class PulseAudio(object):
     def load_module(self, module_name, options=None):
         command = ['pactl', 'load-module', module_name]
         if options:
-            for key, value in options.items():
+            for key, value in list(options.items()):
                 command.append('{}={}'.format(key, value))
         process = subprocess.Popen(command, stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
@@ -299,11 +301,11 @@ class PulseClientFactory(PulseBaseFactory):
             icon_bytes = properties.get('application.icon_name', [])
             binary_bytes = properties.get('application.process.binary', [])
             return PulseClient(
-                object_path=unicode(client_path),
-                index=unicode(obj.Get('org.PulseAudio.Core1.Client', 'Index')),
-                name=self._convert_bytes_to_unicode(name_bytes),
-                icon=self._convert_bytes_to_unicode(icon_bytes),
-                binary=self._convert_bytes_to_unicode(binary_bytes),
+                object_path=str(client_path),
+                index=str(obj.Get('org.PulseAudio.Core1.Client', 'Index')),
+                name=str(name_bytes),
+                icon=str(icon_bytes),
+                binary=str(binary_bytes),
             )
         except dbus.exceptions.DBusException:
             logger.error(
@@ -352,9 +354,9 @@ class PulseModuleFactory(PulseBaseFactory):
         try:
             obj = bus.get_object(object_path=module_path)
             return PulseModule(
-                object_path=unicode(module_path),
-                index=unicode(obj.Get('org.PulseAudio.Core1.Module', 'Index')),
-                name=unicode(obj.Get('org.PulseAudio.Core1.Module', 'Name')),
+                object_path=str(module_path),
+                index=str(obj.Get('org.PulseAudio.Core1.Module', 'Index')),
+                name=str(obj.Get('org.PulseAudio.Core1.Module', 'Name')),
             )
         except dbus.exceptions.DBusException:
             logger.error(
@@ -400,14 +402,14 @@ class PulseSinkFactory(PulseBaseFactory):
 
             properties = obj.Get('org.PulseAudio.Core1.Device', 'PropertyList')
             description_bytes = properties.get('device.description', [])
-            module_path = unicode(
+            module_path = str(
                 obj.Get('org.PulseAudio.Core1.Device', 'OwnerModule'))
 
             return PulseSink(
-                object_path=unicode(object_path),
-                index=unicode(obj.Get('org.PulseAudio.Core1.Device', 'Index')),
-                name=unicode(obj.Get('org.PulseAudio.Core1.Device', 'Name')),
-                label=self._convert_bytes_to_unicode(description_bytes),
+                object_path=str(object_path),
+                index=str(obj.Get('org.PulseAudio.Core1.Device', 'Index')),
+                name=str(obj.Get('org.PulseAudio.Core1.Device', 'Name')),
+                label=str(description_bytes),
                 module=PulseModuleFactory.new(bus, module_path),
             )
         except dbus.exceptions.DBusException:
@@ -498,13 +500,13 @@ class PulseStreamFactory(object):
     def new(self, bus, stream_path):
         try:
             obj = bus.get_object(object_path=stream_path)
-            client_path = unicode(
+            client_path = str(
                 obj.Get('org.PulseAudio.Core1.Stream', 'Client'))
             return PulseStream(
-                object_path=unicode(stream_path),
-                index=unicode(obj.Get(
+                object_path=str(stream_path),
+                index=str(obj.Get(
                     'org.PulseAudio.Core1.Stream', 'Index')),
-                device=unicode(obj.Get(
+                device=str(obj.Get(
                     'org.PulseAudio.Core1.Stream', 'Device')),
                 client=PulseClientFactory.new(bus, client_path),
             )

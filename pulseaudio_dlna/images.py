@@ -17,7 +17,10 @@
 
 from __future__ import unicode_literals
 from __future__ import with_statement
+from __future__ import division
 
+from past.utils import old_div
+from builtins import object
 import tempfile
 import logging
 import gi
@@ -140,8 +143,8 @@ class SvgPngImage(BaseImage):
 
         context = cairo.Context(image_surface)
         context.scale(
-            float(size) / rsvg_handle.props.height,
-            float(size) / rsvg_handle.props.width
+            old_div(float(size), rsvg_handle.props.height),
+            old_div(float(size), rsvg_handle.props.width)
         )
         rsvg_handle.render_cairo(context)
         image_surface.write_to_png(tmp_file.name)

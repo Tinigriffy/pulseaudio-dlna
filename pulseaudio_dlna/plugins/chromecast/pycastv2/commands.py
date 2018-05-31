@@ -18,6 +18,7 @@
 from __future__ import unicode_literals
 
 
+from builtins import object
 class BaseCommand(object):
     def __init__(self):
         self._sender_id = None

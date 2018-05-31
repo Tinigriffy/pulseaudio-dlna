@@ -16,12 +16,17 @@
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import unicode_literals
+from __future__ import absolute_import
 
+from future import standard_library
+from builtins import object
 import time
 import logging
 
-import commands
-import cast_socket
+from pulseaudio_dlna.plugins.chromecast.pycastv2 import commands
+from pulseaudio_dlna.plugins.chromecast.pycastv2 import cast_socket
+
+standard_library.install_aliases()
 
 logger = logging.getLogger('pycastv2')
 
@@ -118,7 +123,7 @@ class ChannelController(object):
                     app_id=self.app_id))
 
 
-class ChromecastController():
+class ChromecastController(object):
 
     APP_BACKDROP = 'E8C28D3C'
     WAIT_INTERVAL = 0.1

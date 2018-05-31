@@ -17,6 +17,9 @@
 
 from __future__ import unicode_literals
 
+from future import standard_library
+standard_library.install_aliases()
+from builtins import object
 import logging
 import threading
 import requests
@@ -96,7 +99,7 @@ class Holder(object):
                     'Connection refused.'.format(url=url))
 
         for plugin in self.plugins:
-            for url, xml in xmls.items():
+            for url, xml in list(xmls.items()):
                 device = plugin.lookup(url, xml)
                 self.add_device(device)
 

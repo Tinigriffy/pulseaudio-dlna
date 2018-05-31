@@ -24,7 +24,7 @@ method.
 
 """
 
-import re
+from re import sub,RegexFlag
 
 
 def repair_xml(bytes):
@@ -35,8 +35,8 @@ def repair_xml(bytes):
             content=match.group(2).strip(),
         )
 
-    bytes = re.sub(
+    bytes = sub(
         r'xmlns(:.*?)?="(.*?)"', strip_namespaces, bytes,
-        flags=re.IGNORECASE)
+        flags=RegexFlag.IGNORECASE)
 
     return bytes

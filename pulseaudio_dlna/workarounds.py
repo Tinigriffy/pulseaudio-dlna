@@ -17,10 +17,13 @@
 
 from __future__ import unicode_literals
 
+from future import standard_library
+standard_library.install_aliases()
+from builtins import object
 import logging
 from lxml import etree
 import requests
-import urlparse
+import urllib.parse
 import traceback
 
 
@@ -170,7 +173,7 @@ class YamahaWorkaround(BaseWorkaround):
         control_url = xml_root.find(self.MR_YAMAHA_CONTROLURL_PATH, namespaces)
         if ((url_base is None) or (control_url is None)):
             return False
-        ip, port = urlparse.urlparse(url_base.text).netloc.split(':')
+        ip, port = urllib.parse.urlparse(url_base.text).netloc.split(':')
         if ((not ip) or (not port)):
             return False
 

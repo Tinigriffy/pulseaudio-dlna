@@ -17,6 +17,8 @@
 
 from __future__ import unicode_literals
 
+from builtins import str
+from builtins import object
 import distutils.spawn
 import inspect
 import sys
@@ -67,9 +69,7 @@ def _find_executable(path):
     # therefore not capable of handling unicode properly when it contains
     # non-ascii characters.
     encoding = 'utf-8'
-    result = distutils.spawn.find_executable(path.encode(encoding))
-    if result is not None and type(result) is str:
-        result = result.decode(encoding)
+    result = distutils.spawn.find_executable(path)
     return result
 
 
@@ -101,8 +101,8 @@ class BaseEncoder(object):
 
     def validate(self):
         if not type(self).AVAILABLE:
-            result = _find_executable(self.binary)
-            if result is not None and result.endswith(self.binary):
+            result = _find_executable(self._binary)
+            if result is not None and result.endswith(self._binary):
                 type(self).AVAILABLE = True
         return type(self).AVAILABLE
 
@@ -113,7 +113,7 @@ class BaseEncoder(object):
     def __str__(self):
         return '<{} available="{}">'.format(
             self.__class__.__name__,
-            unicode(self.available),
+            str(self.available),
         )
 
 
@@ -139,8 +139,8 @@ class BitRateMixin(object):
     def __str__(self):
         return '<{} available="{}" bit-rate="{}">'.format(
             self.__class__.__name__,
-            unicode(self.available),
-            unicode(self.bit_rate),
+            str(self.available),
+            str(self.bit_rate),
         )
 
 
@@ -165,9 +165,9 @@ class SamplerateChannelMixin(object):
     def __str__(self):
         return '<{} available="{}" sample-rate="{}" channels="{}">'.format(
             self.__class__.__name__,
-            unicode(self.available),
-            unicode(self.sample_rate),
-            unicode(self.channels),
+            str(self.available),
+            str(self.sample_rate),
+            str(self.channels),
         )
 
 
