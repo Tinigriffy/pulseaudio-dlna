@@ -278,19 +278,7 @@ class PulseAudio(object):
     def delete_null_sink(self, module_id):
         return self.unload_module(module_id)
 
-
-class PulseBaseFactory(object):
-
-    @classmethod
-    def _convert_bytes_to_unicode(self, byte_array):
-        name = bytes()
-        for i, b in enumerate(byte_array):
-            if not (i == len(byte_array) - 1 and int(b) == 0):
-                name += struct.pack('<B', b)
-        return pulseaudio_dlna.utils.encoding.decode_default(name)
-
-
-class PulseClientFactory(PulseBaseFactory):
+class PulseClientFactory(object):
 
     @classmethod
     def new(self, bus, client_path):
@@ -347,7 +335,7 @@ class PulseClient(object):
                )
 
 
-class PulseModuleFactory(PulseBaseFactory):
+class PulseModuleFactory(object):
 
     @classmethod
     def new(self, bus, module_path):
@@ -393,7 +381,7 @@ class PulseModule(object):
         )
 
 
-class PulseSinkFactory(PulseBaseFactory):
+class PulseSinkFactory(object):
 
     @classmethod
     def new(self, bus, object_path):

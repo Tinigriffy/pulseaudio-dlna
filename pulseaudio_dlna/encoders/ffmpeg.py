@@ -21,7 +21,7 @@ from builtins import range
 from builtins import object
 import logging
 
-from pulseaudio_dlna.encoders import (
+from pulseaudio_dlna.encoders.base import (
     BitRateMixin, SamplerateChannelMixin, BaseEncoder)
 
 logger = logging.getLogger('pulseaudio_dlna.encoder.ffmpeg')

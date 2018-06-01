@@ -194,9 +194,9 @@ class Application(object):
         bit_rate = options['--bit-rate']
         if bit_rate:
             try:
-                pulseaudio_dlna.encoders.set_bit_rate(bit_rate)
-            except (pulseaudio_dlna.encoders.InvalidBitrateException,
-                    pulseaudio_dlna.encoders.UnsupportedBitrateException) as e:
+                pulseaudio_dlna.encoders.base.set_bit_rate(bit_rate)
+            except (pulseaudio_dlna.encoders.base.InvalidBitrateException,
+                    pulseaudio_dlna.encoders.base.UnsupportedBitrateException) as e:
                 logger.error(e)
                 sys.exit(1)
 
@@ -208,9 +208,9 @@ class Application(object):
             sys.exit(1)
 
         logger.info('Encoder settings:')
-        for _type in pulseaudio_dlna.encoders.ENCODERS:
+        for _type in pulseaudio_dlna.encoders.base.ENCODERS:
             _type.AVAILABLE = False
-        for _type in pulseaudio_dlna.encoders.ENCODERS:
+        for _type in pulseaudio_dlna.encoders.base.ENCODERS:
             encoder = _type()
             encoder.validate()
             logger.info('  {}'.format(encoder))

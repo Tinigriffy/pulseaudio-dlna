@@ -15,8 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
-
 from builtins import str
 from builtins import object
 import functools
@@ -25,7 +23,11 @@ import re
 import inspect
 import sys
 
-import pulseaudio_dlna.encoders
+from pulseaudio_dlna.encoders.base import *
+from pulseaudio_dlna.encoders.avconv import *
+from pulseaudio_dlna.encoders.ffmpeg import *
+from pulseaudio_dlna.encoders.generic import *
+
 import pulseaudio_dlna.rules
 
 logger = logging.getLogger('pulseaudio_dlna.codecs')
@@ -204,9 +206,9 @@ class Mp3Codec(BitRateMixin, BaseCodec):
     BLACKLISTED_MIME_TYPES = ['audio/mpegurl']
     IDENTIFIER = 'mp3'
     ENCODERS = {
-        'generic': pulseaudio_dlna.encoders.LameMp3Encoder,
-        'ffmpeg': pulseaudio_dlna.encoders.FFMpegMp3Encoder,
-        'avconv': pulseaudio_dlna.encoders.AVConvMp3Encoder,
+        'generic': LameMp3Encoder,
+        'ffmpeg': FFMpegMp3Encoder,
+        'avconv': AVConvMp3Encoder,
     }
     PRIORITY = 18
 
@@ -222,10 +224,10 @@ class WavCodec(BaseCodec):
     SUPPORTED_MIME_TYPES = ['audio/wav', 'audio/x-wav']
     IDENTIFIER = 'wav'
     ENCODERS = {
-        'generic': pulseaudio_dlna.encoders.SoxWavEncoder,
-        'ffmpeg': pulseaudio_dlna.encoders.FFMpegWavEncoder,
-        'avconv': pulseaudio_dlna.encoders.AVConvWavEncoder,
-        'pulseaudio': pulseaudio_dlna.encoders.NullEncoder,
+        'generic': SoxWavEncoder,
+        'ffmpeg': FFMpegWavEncoder,
+        'avconv': AVConvWavEncoder,
+        'pulseaudio': NullEncoder,
     }
     PRIORITY = 15
 
@@ -240,9 +242,9 @@ class L16Codec(BaseCodec):
     SUPPORTED_MIME_TYPES = ['audio/l16']
     IDENTIFIER = 'l16'
     ENCODERS = {
-        'generic': pulseaudio_dlna.encoders.SoxL16Encoder,
-        'ffmpeg': pulseaudio_dlna.encoders.FFMpegL16Encoder,
-        'avconv': pulseaudio_dlna.encoders.AVConvL16Encoder,
+        'generic': SoxL16Encoder,
+        'ffmpeg': FFMpegL16Encoder,
+        'avconv': AVConvL16Encoder,
     }
     PRIORITY = 1
 
@@ -292,9 +294,9 @@ class AacCodec(BitRateMixin, BaseCodec):
     SUPPORTED_MIME_TYPES = ['audio/aac', 'audio/x-aac']
     IDENTIFIER = 'aac'
     ENCODERS = {
-        'generic': pulseaudio_dlna.encoders.FaacAacEncoder,
-        'ffmpeg': pulseaudio_dlna.encoders.FFMpegAacEncoder,
-        'avconv': pulseaudio_dlna.encoders.AVConvAacEncoder,
+        'generic': FaacAacEncoder,
+        'ffmpeg': FFMpegAacEncoder,
+        'avconv': AVConvAacEncoder,
     }
     PRIORITY = 12
 
@@ -310,10 +312,10 @@ class OggCodec(BitRateMixin, BaseCodec):
     SUPPORTED_MIME_TYPES = ['audio/ogg', 'audio/x-ogg', 'application/ogg']
     IDENTIFIER = 'ogg'
     ENCODERS = {
-        'generic': pulseaudio_dlna.encoders.OggencOggEncoder,
-        'ffmpeg': pulseaudio_dlna.encoders.FFMpegOggEncoder,
-        'avconv': pulseaudio_dlna.encoders.AVConvOggEncoder,
-        'pulseaudio': pulseaudio_dlna.encoders.NullEncoder,
+        'generic': OggencOggEncoder,
+        'ffmpeg': FFMpegOggEncoder,
+        'avconv': AVConvOggEncoder,
+        'pulseaudio': NullEncoder,
     }
     PRIORITY = 6
 
@@ -329,10 +331,10 @@ class FlacCodec(BaseCodec):
     SUPPORTED_MIME_TYPES = ['audio/flac', 'audio/x-flac']
     IDENTIFIER = 'flac'
     ENCODERS = {
-        'generic': pulseaudio_dlna.encoders.FlacFlacEncoder,
-        'ffmpeg': pulseaudio_dlna.encoders.FFMpegFlacEncoder,
-        'avconv': pulseaudio_dlna.encoders.AVConvFlacEncoder,
-        'pulseaudio': pulseaudio_dlna.encoders.NullEncoder,
+        'generic': FlacFlacEncoder,
+        'ffmpeg': FFMpegFlacEncoder,
+        'avconv': AVConvFlacEncoder,
+        'pulseaudio': NullEncoder,
     }
     PRIORITY = 9
 
@@ -347,9 +349,9 @@ class OpusCodec(BitRateMixin, BaseCodec):
     SUPPORTED_MIME_TYPES = ['audio/opus', 'audio/x-opus']
     IDENTIFIER = 'opus'
     ENCODERS = {
-        'generic': pulseaudio_dlna.encoders.OpusencOpusEncoder,
-        'ffmpeg': pulseaudio_dlna.encoders.FFMpegOpusEncoder,
-        'avconv': pulseaudio_dlna.encoders.AVConvOpusEncoder,
+        'generic': OpusencOpusEncoder,
+        'ffmpeg': FFMpegOpusEncoder,
+        'avconv': AVConvOpusEncoder,
     }
     PRIORITY = 3
 
