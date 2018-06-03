@@ -34,7 +34,6 @@ import sys
 import threading
 import urllib.request, urllib.parse, urllib.error
 
-from future import standard_library
 from gi.repository import GObject
 import pkg_resources
 import pulseaudio_dlna.codecs
@@ -388,8 +387,8 @@ class StreamRequestHandler(http.server.BaseHTTPRequestHandler):
 
     def _decode_settings(self, path):
         try:
-            data_quoted = findall(r'/(.*?)/', path)[0]
-            data_string = base64.b64decode(urllib.parse.unquote(data_quoted))
+            data_quoted = findall('/(.*?)/', path)[0]
+            data_string = urllib.parse.unquote(data_quoted)
             settings = {
                 k: v for k, v in findall('(.*?)="(.*?)",?', data_string)
             }
