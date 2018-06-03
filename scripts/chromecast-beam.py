@@ -130,6 +130,7 @@ import requests
 
 import pulseaudio_dlna.plugins.chromecast.pycastv2 as pycastv2
 
+
 logger = logging.getLogger('chromecast-beam')
 
 RE_IPV4 = r"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"

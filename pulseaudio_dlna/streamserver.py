@@ -17,36 +17,39 @@
 
 from __future__ import unicode_literals
 
-from future import standard_library
-standard_library.install_aliases()
-from builtins import hex
-from builtins import str
-from builtins import object
-from gi.repository import GObject
-from re import findall, search, RegexFlag
-
-import subprocess
-import setproctitle
-import logging
-import socket
-import select
-import sys
 import base64
-import urllib.request, urllib.parse, urllib.error
-import json
-import os
-import signal
-import pkg_resources
+from builtins import hex
+from builtins import object
+from builtins import str
 import http.server
-import socketserver
+import json
+import logging
+import os
 import queue
+from re import findall, search, RegexFlag
+import select
+import signal
+import socket
+import socketserver
+import subprocess
+import sys
 import threading
+import urllib.request, urllib.parse, urllib.error
 
-import pulseaudio_dlna.encoders
+from future import standard_library
+from gi.repository import GObject
+import pkg_resources
 import pulseaudio_dlna.codecs
+import pulseaudio_dlna.encoders
+import pulseaudio_dlna.images
 import pulseaudio_dlna.recorders
 import pulseaudio_dlna.rules
-import pulseaudio_dlna.images
+import setproctitle
+
+
+standard_library.install_aliases()
+
+
 
 logger = logging.getLogger('pulseaudio_dlna.streamserver')
 

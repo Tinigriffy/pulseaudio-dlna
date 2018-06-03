@@ -15,15 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import division
 from __future__ import unicode_literals
 from __future__ import with_statement
-from __future__ import division
 
-from past.utils import old_div
 from builtins import object
-import tempfile
 import logging
+import tempfile
+
 import gi
+from past.utils import old_div
+
 
 logger = logging.getLogger('pulseaudio_dlna.images')
 

@@ -26,6 +26,7 @@ import pulseaudio_dlna.holder
 import pulseaudio_dlna.plugins.dlna
 import requests
 
+
 STEPS_PATTERN = """
     Step 1: Open your Fritzbox web interface (http://fritz.box/)
     Step 2: Goto Internet -> Permit Access -> Port-Sharing

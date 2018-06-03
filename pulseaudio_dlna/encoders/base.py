@@ -15,12 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from builtins import str
 from builtins import object
+from builtins import str
 import distutils.spawn
 import inspect
-import sys
 import logging
+import sys
+
 
 logger = logging.getLogger('pulseaudio_dlna.encoder.base')
 

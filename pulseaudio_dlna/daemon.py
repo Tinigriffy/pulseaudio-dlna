@@ -18,20 +18,21 @@
 from __future__ import unicode_literals
 
 from builtins import object
-from gi.repository import GObject
+import functools
+import logging
+import os
+import pwd
+import signal
+import sys
 
 import dbus
 import dbus.mainloop.glib
-import logging
-import os
-import sys
-import setproctitle
-import functools
-import signal
-import pwd
-
+from gi.repository import GObject
 import pulseaudio_dlna.utils.subprocess
+import setproctitle
+
 import pulseaudio_dlna.utils.psutil as psutil
+
 
 logger = logging.getLogger('pulseaudio_dlna.daemon')
 

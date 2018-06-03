@@ -17,6 +17,7 @@
 
 import setuptools
 
+
 setuptools.setup(
     name="pulseaudio-dlna",
     author="Massimo Mund",

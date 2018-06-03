@@ -17,4 +17,5 @@
 
 from pulseaudio_dlna.encoders.base import load_encoders
 
+
 load_encoders()

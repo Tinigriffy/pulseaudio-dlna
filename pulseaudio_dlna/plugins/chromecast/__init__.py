@@ -23,6 +23,7 @@ import pulseaudio_dlna.plugins
 import pulseaudio_dlna.plugins.chromecast.mdns
 from pulseaudio_dlna.plugins.chromecast.renderer import ChromecastRendererFactory
 
+
 logger = logging.getLogger('pulseaudio_dlna.plugins.chromecast')
 
 

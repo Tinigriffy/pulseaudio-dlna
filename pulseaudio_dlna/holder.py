@@ -17,16 +17,19 @@
 
 from __future__ import unicode_literals
 
-from future import standard_library
-standard_library.install_aliases()
 from builtins import object
 import logging
-import threading
-import requests
-import traceback
-import setproctitle
 import signal
+import threading
 import time
+import traceback
+
+from future import standard_library
+import requests
+import setproctitle
+
+
+standard_library.install_aliases()
 
 logger = logging.getLogger('pulseaudio_dlna.holder')
 

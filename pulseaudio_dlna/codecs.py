@@ -15,20 +15,20 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from builtins import str
 from builtins import object
+from builtins import str
 import functools
+import inspect
 import logging
 import re
-import inspect
 import sys
 
-from pulseaudio_dlna.encoders.base import *
 from pulseaudio_dlna.encoders.avconv import *
+from pulseaudio_dlna.encoders.base import *
 from pulseaudio_dlna.encoders.ffmpeg import *
 from pulseaudio_dlna.encoders.generic import *
-
 import pulseaudio_dlna.rules
+
 
 logger = logging.getLogger('pulseaudio_dlna.codecs')
 

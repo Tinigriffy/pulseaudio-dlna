@@ -15,12 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-import logging
 from builtins import str
+import logging
 
 from pulseaudio_dlna.encoders.ffmpeg import (
     FFMpegMp3Encoder, FFMpegWavEncoder, FFMpegL16Encoder, FFMpegAacEncoder,
     FFMpegOggEncoder, FFMpegFlacEncoder, FFMpegOpusEncoder)
+
 
 logger = logging.getLogger('pulseaudio_dlna.encoder.avconv')
 

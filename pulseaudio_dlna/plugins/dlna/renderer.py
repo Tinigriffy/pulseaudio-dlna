@@ -15,22 +15,24 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
 from __future__ import absolute_import
+from __future__ import unicode_literals
 
-from builtins import str
 from builtins import object
+from builtins import str
 import logging
 import time
 import traceback
 
-import pulseaudio_dlna.pulseaudio
-import pulseaudio_dlna.encoders
-import pulseaudio_dlna.workarounds
 import pulseaudio_dlna.codecs
-import pulseaudio_dlna.rules
+import pulseaudio_dlna.encoders
 import pulseaudio_dlna.plugins.renderer
+import pulseaudio_dlna.pulseaudio
+import pulseaudio_dlna.rules
+import pulseaudio_dlna.workarounds
+
 from . import pyupnpv2
+
 
 logger = logging.getLogger('pulseaudio_dlna.plugins.dlna.renderer')
 

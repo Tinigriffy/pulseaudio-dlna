@@ -17,19 +17,22 @@
 
 from __future__ import division
 
-from future import standard_library
-standard_library.install_aliases()
-from builtins import range
 from builtins import object
-from past.utils import old_div
-import socket
+from builtins import range
 import logging
-import chardet
+import socket
 import threading
 import traceback
 
-import pulseaudio_dlna.utils.network
+import chardet
+from future import standard_library
+from past.utils import old_div
 import pulseaudio_dlna.plugins.dlna.ssdp
+import pulseaudio_dlna.utils.network
+
+
+standard_library.install_aliases()
+
 
 logger = logging.getLogger('pulseaudio_dlna.discover')
 

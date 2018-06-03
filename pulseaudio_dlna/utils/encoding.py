@@ -18,10 +18,12 @@
 from __future__ import unicode_literals
 
 from builtins import chr
+import locale
 import logging
 import sys
-import locale
+
 import chardet
+
 
 logger = logging.getLogger('pulseaudio_dlna.plugins.utils.encoding')
 

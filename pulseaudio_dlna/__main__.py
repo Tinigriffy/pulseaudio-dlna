@@ -115,15 +115,16 @@ Examples:
 
 '''
 
-from __future__ import unicode_literals
 from __future__ import print_function
+from __future__ import unicode_literals
 
-import sys
-import os
-import docopt
-import logging
-import socket
 import getpass
+import logging
+import os
+import socket
+import sys
+
+import docopt
 
 
 def main(argv=sys.argv[1:]):

@@ -15,21 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
 from __future__ import absolute_import
+from __future__ import unicode_literals
 
-from builtins import str
 from builtins import object
-import ssl
-import socket
-import logging
-import struct
+from builtins import str
 import json
+import logging
+import select
+import socket
+import ssl
+import struct
 import time
 import traceback
-import select
 
 from . import cast_channel_pb2
+
 
 logger = logging.getLogger('pycastv2.cast_socket')
 

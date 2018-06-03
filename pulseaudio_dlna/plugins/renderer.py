@@ -15,22 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from builtins import str
+import base64
 from builtins import object
-
-import re
-import random
-import urllib.parse
-import urllib.request, urllib.parse, urllib.error
+from builtins import str
 import functools
 import logging
-import base64
+from math import floor
+import random
+import re
+import urllib.parse
+import urllib.request, urllib.parse, urllib.error
 
 import pulseaudio_dlna.pulseaudio
 import pulseaudio_dlna.rules
 import pulseaudio_dlna.streamserver
 import pulseaudio_dlna.utils.network
-from math import floor
+
 
 logger = logging.getLogger('pulseaudio_dlna.plugins.renderer')
 

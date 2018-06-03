@@ -15,12 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
-from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import print_function
+from __future__ import unicode_literals
 
 import logging
+
 from . import __init__ as pycastv2
+
 
 logging.basicConfig(level=logging.DEBUG)
 

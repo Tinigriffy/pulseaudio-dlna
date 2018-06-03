@@ -19,13 +19,14 @@ from __future__ import absolute_import
 from __future__ import unicode_literals
 
 from builtins import object
+import logging
+import os
+import subprocess
+import sys
+import threading
+
 from gi.repository import GObject
 
-import subprocess
-import threading
-import os
-import sys
-import logging
 
 logger = logging.getLogger('pulseaudio_dlna.utils.subprocess')
 

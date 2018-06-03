@@ -28,6 +28,7 @@ import pulseaudio_dlna.plugins.chromecast
 import pulseaudio_dlna.plugins.dlna
 import requests
 
+
 level = logging.INFO
 logging.getLogger('requests').setLevel(logging.WARNING)
 logging.getLogger('urllib3').setLevel(logging.WARNING)

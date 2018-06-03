@@ -16,30 +16,30 @@
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
 from builtins import bytes
-from builtins import str
 from builtins import object
-from gi.repository import GObject
-
-import sys
-import dbus
-import dbus.mainloop.glib
+from builtins import str
+import collections
+import concurrent.futures
+import functools
+import logging
 import os
+import re
+import signal
 import struct
 import subprocess
-import logging
-import setproctitle
-import functools
-import signal
-import re
+import sys
 import traceback
-import concurrent.futures
-import collections
 
-import pulseaudio_dlna.plugins.renderer
-import pulseaudio_dlna.notification
-import pulseaudio_dlna.utils.encoding
-import pulseaudio_dlna.covermodes
 from _dbus_bindings import ByteArray
+import dbus
+import dbus.mainloop.glib
+from gi.repository import GObject
+import pulseaudio_dlna.covermodes
+import pulseaudio_dlna.notification
+import pulseaudio_dlna.plugins.renderer
+import pulseaudio_dlna.utils.encoding
+import setproctitle
+
 
 logger = logging.getLogger('pulseaudio_dlna.pulseaudio')
 

@@ -15,35 +15,36 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
 from __future__ import print_function
+from __future__ import unicode_literals
 
-from builtins import str
 from builtins import object
-import multiprocessing
-import signal
-import setproctitle
-import logging
-import sys
+from builtins import str
 import json
+import logging
+import multiprocessing
 import os
+import signal
+import sys
 import time
 
 import pulseaudio_dlna
+import pulseaudio_dlna.covermodes
+import pulseaudio_dlna.encoders
 import pulseaudio_dlna.holder
-import pulseaudio_dlna.plugins.dlna
-import pulseaudio_dlna.plugins.dlna.ssdp
-import pulseaudio_dlna.plugins.dlna.ssdp.listener
-import pulseaudio_dlna.plugins.dlna.ssdp.discover
 import pulseaudio_dlna.plugins.chromecast
 import pulseaudio_dlna.plugins.chromecast.mdns
-import pulseaudio_dlna.encoders
-import pulseaudio_dlna.covermodes
-import pulseaudio_dlna.streamserver
+import pulseaudio_dlna.plugins.dlna
+import pulseaudio_dlna.plugins.dlna.ssdp
+import pulseaudio_dlna.plugins.dlna.ssdp.discover
+import pulseaudio_dlna.plugins.dlna.ssdp.listener
 import pulseaudio_dlna.pulseaudio
-import pulseaudio_dlna.utils.network
 import pulseaudio_dlna.rules
+import pulseaudio_dlna.streamserver
+import pulseaudio_dlna.utils.network
 import pulseaudio_dlna.workarounds
+import setproctitle
+
 
 logger = logging.getLogger('pulseaudio_dlna.application')
 

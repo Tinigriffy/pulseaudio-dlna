@@ -17,14 +17,17 @@
 
 from __future__ import unicode_literals
 
-from future import standard_library
-standard_library.install_aliases()
 from builtins import object
 import logging
+import traceback
+import urllib.parse
+
+from future import standard_library
 from lxml import etree
 import requests
-import urllib.parse
-import traceback
+
+
+standard_library.install_aliases()
 
 logger = logging.getLogger('pulseaudio_dlna.workarounds')
 

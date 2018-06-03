@@ -15,24 +15,28 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
 from __future__ import absolute_import
+from __future__ import unicode_literals
 
-from future import standard_library
-standard_library.install_aliases()
-from builtins import str
 from builtins import object
-import requests
+from builtins import str
 import logging
-import urllib.parse
 import socket
 import traceback
-import lxml
+import urllib.parse
 
-from . import pycastv2
+from future import standard_library
+import lxml
+import pulseaudio_dlna.codecs
 import pulseaudio_dlna.plugins.renderer
 import pulseaudio_dlna.rules
-import pulseaudio_dlna.codecs
+import requests
+
+from . import pycastv2
+
+
+standard_library.install_aliases()
+
 
 logger = logging.getLogger('pulseaudio_dlna.plugins.chromecast.renderer')
 

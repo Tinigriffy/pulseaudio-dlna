@@ -17,17 +17,20 @@
 
 from __future__ import unicode_literals
 
-from future import standard_library
-standard_library.install_aliases()
 import logging
 import threading
 import traceback
 
+from future import standard_library
 import pulseaudio_dlna.plugins
-import pulseaudio_dlna.plugins.dlna.ssdp
-import pulseaudio_dlna.plugins.dlna.ssdp.listener
-import pulseaudio_dlna.plugins.dlna.ssdp.discover
 from pulseaudio_dlna.plugins.dlna.renderer import DLNAMediaRendererFactory
+import pulseaudio_dlna.plugins.dlna.ssdp
+import pulseaudio_dlna.plugins.dlna.ssdp.discover
+import pulseaudio_dlna.plugins.dlna.ssdp.listener
+
+
+standard_library.install_aliases()
+
 
 logger = logging.getLogger('pulseaudio_dlna.plugins.dlna')
 

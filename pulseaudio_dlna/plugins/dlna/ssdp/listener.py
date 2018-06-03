@@ -17,20 +17,23 @@
 
 from __future__ import unicode_literals
 
-from future import standard_library
-standard_library.install_aliases()
 from builtins import object
-from gi.repository import GObject
-
-import socketserver
 import logging
 import socket
+import socketserver
 import struct
-import setproctitle
 import time
-import chardet
 
+import chardet
+from future import standard_library
+from gi.repository import GObject
 import pulseaudio_dlna.plugins.dlna.ssdp
+import setproctitle
+
+
+standard_library.install_aliases()
+
+
 
 logger = logging.getLogger('pulseaudio_dlna.plugins.dlna.ssdp')
 

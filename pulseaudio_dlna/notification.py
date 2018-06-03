@@ -19,6 +19,7 @@ import logging
 
 import notify2
 
+
 logger = logging.getLogger('pulseaudio_dlna.notification')
 
 

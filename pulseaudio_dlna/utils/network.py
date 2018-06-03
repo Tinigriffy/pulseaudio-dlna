@@ -17,10 +17,12 @@
 
 from __future__ import unicode_literals
 
-import netifaces
-import traceback
-import socket
 import logging
+import socket
+import traceback
+
+import netifaces
+
 
 logger = logging.getLogger('pulseaudio_dlna.utils.network')
 

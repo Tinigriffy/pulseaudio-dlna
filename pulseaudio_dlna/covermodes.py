@@ -18,11 +18,12 @@
 from __future__ import unicode_literals
 
 from builtins import object
-import sys
 import inspect
-import socket
-import platform
 import logging
+import platform
+import socket
+import sys
+
 
 logger = logging.getLogger('pulseaudio_dlna.covermodes')
 

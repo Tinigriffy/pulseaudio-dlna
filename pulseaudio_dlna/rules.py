@@ -17,13 +17,15 @@
 
 from __future__ import unicode_literals
 
-from builtins import str
-from past.builtins import basestring
 from builtins import object
+from builtins import str
 import functools
-import logging
 import inspect
+import logging
 import sys
+
+from past.builtins import basestring
+
 
 logger = logging.getLogger('pulseaudio_dlna.rules')
 

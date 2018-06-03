@@ -18,11 +18,12 @@
 from __future__ import unicode_literals
 
 from builtins import object
-from gi.repository import GObject
-
 import logging
-import zeroconf
 import time
+
+from gi.repository import GObject
+import zeroconf
+
 
 logger = logging.getLogger('pulseaudio_dlna.plugins.chromecast.mdns')
 

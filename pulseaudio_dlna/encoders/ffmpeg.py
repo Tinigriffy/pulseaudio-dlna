@@ -15,13 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from builtins import str
-from builtins import range
 from builtins import object
+from builtins import range
+from builtins import str
 import logging
 
 from pulseaudio_dlna.encoders.base import (
     BitRateMixin, SamplerateChannelMixin, BaseEncoder)
+
 
 logger = logging.getLogger('pulseaudio_dlna.encoder.ffmpeg')
 
