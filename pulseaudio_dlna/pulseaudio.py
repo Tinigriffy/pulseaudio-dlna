@@ -286,7 +286,7 @@ class PulseClientFactory(object):
     def new(self, bus, client_path):
         try:
             obj = bus.get_object(object_path=client_path)
-            properties = obj.Get('org.PulseAudio.Core1.Client', 'PropertyList')
+            properties = obj.Get('org.PulseAudio.Core1.Client', 'PropertyList',byte_arrays=True)
             name_bytes = properties.get('application.name', [])
             icon_bytes = properties.get('application.icon_name', [])
             binary_bytes = properties.get('application.process.binary', [])
@@ -390,7 +390,7 @@ class PulseSinkFactory(object):
         try:
             obj = bus.get_object(object_path=object_path)
 
-            properties = obj.Get('org.PulseAudio.Core1.Device', 'PropertyList')
+            properties = obj.Get('org.PulseAudio.Core1.Device', 'PropertyList',byte_arrays=True)
             description_bytes = properties.get('device.description', [])
             module_path = str(
                 obj.Get('org.PulseAudio.Core1.Device', 'OwnerModule'))
@@ -399,7 +399,7 @@ class PulseSinkFactory(object):
                 object_path=str(object_path),
                 index=str(obj.Get('org.PulseAudio.Core1.Device', 'Index')),
                 name=str(obj.Get('org.PulseAudio.Core1.Device', 'Name')),
-                label=bytearray(description_bytes).decode(),
+                label=str(description_bytes),
                 module=PulseModuleFactory.new(bus, module_path),
             )
         except dbus.exceptions.DBusException:
