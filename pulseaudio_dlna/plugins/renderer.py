@@ -15,14 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
-from __future__ import division
-
-from future import standard_library
-standard_library.install_aliases()
 from builtins import str
 from builtins import object
-from past.utils import old_div
+
 import re
 import random
 import urllib.parse
@@ -35,6 +30,7 @@ import pulseaudio_dlna.pulseaudio
 import pulseaudio_dlna.rules
 import pulseaudio_dlna.streamserver
 import pulseaudio_dlna.utils.network
+from math import floor
 
 logger = logging.getLogger('pulseaudio_dlna.plugins.renderer')
 
@@ -275,7 +271,7 @@ class BaseRenderer(object):
             if isinstance(codec, pulseaudio_dlna.codecs.L16Codec):
                 value = codec.priority * 100000
                 if codec.sample_rate:
-                    value += 200 - abs(old_div((44100 - codec.sample_rate), 1000))
+                    value += 200 - abs(floor((44100 - codec.sample_rate)/1000))
                 if codec.channels:
                     value *= codec.channels
                 return value
@@ -346,7 +342,7 @@ class BaseRenderer(object):
         data_string = ','.join(
             ['{}="{}"'.format(k, v) for k, v in settings.items()])
         stream_name = '/{base_string}/{suffix}'.format(
-            base_string=urllib.parse.quote(base64.b64encode(data_string)),
+            base_string=urllib.parse.quote(data_string),
             suffix=suffix,
         )
         return urllib.parse.urljoin(base_url, stream_name)

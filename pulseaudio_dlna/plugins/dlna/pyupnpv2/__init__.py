@@ -342,7 +342,7 @@ class UpnpService(object):
         try:
             response = None
             response = self._request.post(
-                url, data=data.encode(self.ENCODING), headers=headers,
+                url, data=data, headers=headers,
                 timeout=self.TIMEOUT)
             return response
         finally:

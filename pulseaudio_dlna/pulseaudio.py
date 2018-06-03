@@ -40,6 +40,7 @@ import pulseaudio_dlna.plugins.renderer
 import pulseaudio_dlna.notification
 import pulseaudio_dlna.utils.encoding
 import pulseaudio_dlna.covermodes
+from _dbus_bindings import ByteArray
 
 logger = logging.getLogger('pulseaudio_dlna.pulseaudio')
 
@@ -239,7 +240,7 @@ class PulseAudio(object):
             stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
         if process.returncode == 0:
-            matches = re.findall(r'(\d+)\s+([\w-]+)(.*?)\n', stdout)
+            matches = re.findall('(\d+)\s+([\w-]+)(.*?)\n', stdout)
             return [match[1] for match in matches]
         return None
 
@@ -397,7 +398,7 @@ class PulseSinkFactory(object):
                 object_path=str(object_path),
                 index=str(obj.Get('org.PulseAudio.Core1.Device', 'Index')),
                 name=str(obj.Get('org.PulseAudio.Core1.Device', 'Name')),
-                label=str(description_bytes),
+                label=bytearray(description_bytes).decode(),
                 module=PulseModuleFactory.new(bus, module_path),
             )
         except dbus.exceptions.DBusException:

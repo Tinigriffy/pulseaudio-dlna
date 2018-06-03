@@ -27,7 +27,7 @@ method.
 from re import sub,RegexFlag
 
 
-def repair_xml(bytes):
+def repair_xml(xml):
 
     def strip_namespaces(match):
         return 'xmlns{prefix}="{content}"'.format(
@@ -35,8 +35,8 @@ def repair_xml(bytes):
             content=match.group(2).strip(),
         )
 
-    bytes = sub(
-        r'xmlns(:.*?)?="(.*?)"', strip_namespaces, bytes,
+    xml = sub(
+        'xmlns(:.*?)?="(.*?)"', strip_namespaces, xml,
         flags=RegexFlag.IGNORECASE)
 
     return bytes

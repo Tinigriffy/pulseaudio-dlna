@@ -15,13 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
-
 from re import findall,search,RegexFlag
 
 
 def _get_header_map(header):
-    header = findall(r"(?P<name>.*?):(?P<value>.*?)\n", header)
+    header = findall("(?P<name>.*?):(?P<value>.*?)\n", header)
     header = {
         k.strip().lower(): v.strip() for k, v in list(dict(header).items())
     }
