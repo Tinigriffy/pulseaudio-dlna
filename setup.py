@@ -49,6 +49,7 @@ setuptools.setup(
         "netifaces >= 0.8",
         "lxml >= 3",
         "zeroconf >= 0.17.4",
+        "future >= 0.16.0",
     ],
     entry_points={
         "console_scripts": [
