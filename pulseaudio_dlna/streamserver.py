@@ -221,6 +221,7 @@ class ProcessStream(object):
 
 
 class StreamManager(object):
+
     def __init__(self, server):
         self.streams = {}
         self.timeouts = {}
@@ -278,6 +279,7 @@ class StreamManager(object):
 
 
 class StreamRequestHandler(http.server.BaseHTTPRequestHandler):
+
     def __init__(self, *args):
         try:
             http.server.BaseHTTPRequestHandler.__init__(self, *args)

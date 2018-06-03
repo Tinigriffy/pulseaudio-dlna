@@ -17,9 +17,11 @@
 
 from __future__ import unicode_literals
 
-
 from builtins import object
+
+
 class BaseCommand(object):
+
     def __init__(self):
         self._sender_id = None
         self._destination_id = None
@@ -92,6 +94,7 @@ class BaseCommand(object):
 
 
 class ConnectCommand(BaseCommand):
+
     def __init__(self, destination_id=None, namespace=None, agent=None):
         BaseCommand.__init__(self)
         self.data = {
@@ -105,6 +108,7 @@ class ConnectCommand(BaseCommand):
 
 
 class CloseCommand(BaseCommand):
+
     def __init__(self, destination_id=None, namespace=None):
         BaseCommand.__init__(self)
         self.data = {
@@ -117,6 +121,7 @@ class CloseCommand(BaseCommand):
 
 
 class StatusCommand(BaseCommand):
+
     def __init__(self, destination_id=None, namespace=None):
         BaseCommand.__init__(self)
         self.data = {
@@ -128,6 +133,7 @@ class StatusCommand(BaseCommand):
 
 
 class LaunchCommand(BaseCommand):
+
     def __init__(self, app_id, destination_id=None, namespace=None):
         BaseCommand.__init__(self)
         self.data = {
@@ -140,6 +146,7 @@ class LaunchCommand(BaseCommand):
 
 
 class StopCommand(BaseCommand):
+
     def __init__(self, session_id=False, destination_id=None,
                  namespace=None):
         BaseCommand.__init__(self)
@@ -153,6 +160,7 @@ class StopCommand(BaseCommand):
 
 
 class SetVolumeCommand(BaseCommand):
+
     def __init__(self, volume, session_id=False, destination_id=None,
                  namespace=None):
         BaseCommand.__init__(self)
@@ -168,6 +176,7 @@ class SetVolumeCommand(BaseCommand):
 
 
 class SetVolumeMuteCommand(BaseCommand):
+
     def __init__(self, muted, session_id=False, destination_id=None,
                  namespace=None):
         BaseCommand.__init__(self)
@@ -183,6 +192,7 @@ class SetVolumeMuteCommand(BaseCommand):
 
 
 class PongCommand(BaseCommand):
+
     def __init__(self, session_id=False, destination_id=None,
                  namespace=None):
         BaseCommand.__init__(self)

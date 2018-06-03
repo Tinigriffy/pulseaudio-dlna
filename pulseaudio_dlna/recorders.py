@@ -22,6 +22,7 @@ import pulseaudio_dlna.codecs
 
 
 class BaseRecorder(object):
+
     def __init__(self):
         self._command = []
 
@@ -31,6 +32,7 @@ class BaseRecorder(object):
 
 
 class PulseaudioRecorder(BaseRecorder):
+
     def __init__(self, monitor, codec=None):
         BaseRecorder.__init__(self)
         self._monitor = monitor

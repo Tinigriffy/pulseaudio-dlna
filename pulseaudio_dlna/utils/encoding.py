@@ -27,6 +27,7 @@ logger = logging.getLogger('pulseaudio_dlna.plugins.utils.encoding')
 
 
 class NotBytesException(Exception):
+
     def __init__(self, var):
         Exception.__init__(
             self,

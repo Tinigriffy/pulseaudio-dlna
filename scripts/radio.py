@@ -16,19 +16,17 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
-
 from builtins import object
-import requests
+import concurrent.futures
 import logging
 import sys
-import concurrent.futures
 
 import pulseaudio_dlna
-import pulseaudio_dlna.holder
-import pulseaudio_dlna.plugins.dlna
-import pulseaudio_dlna.plugins.chromecast
 import pulseaudio_dlna.codecs
+import pulseaudio_dlna.holder
+import pulseaudio_dlna.plugins.chromecast
+import pulseaudio_dlna.plugins.dlna
+import requests
 
 level = logging.INFO
 logging.getLogger('requests').setLevel(logging.WARNING)
@@ -127,6 +125,7 @@ class RadioLauncher(object):
 # Local pulseaudio-dlna installations running in a virutalenv should run this
 #   script as module:
 #     python -m scripts/radio [--list | --stop]
+
 
 args = sys.argv[1:]
 rl = RadioLauncher()

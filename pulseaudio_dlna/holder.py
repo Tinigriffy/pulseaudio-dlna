@@ -32,6 +32,7 @@ logger = logging.getLogger('pulseaudio_dlna.holder')
 
 
 class Holder(object):
+
     def __init__(
             self, plugins,
             pulse_queue=None, device_filter=None, device_config=None,

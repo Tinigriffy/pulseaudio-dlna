@@ -15,7 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-
 from builtins import str
 from builtins import range
 from builtins import object
@@ -79,6 +78,7 @@ class FFMpegWavEncoder(FFMpegMixin, BaseEncoder):
 
 
 class FFMpegL16Encoder(SamplerateChannelMixin, FFMpegMixin, BaseEncoder):
+
     def __init__(self, sample_rate=None, channels=None):
         BaseEncoder.__init__(self)
         self.sample_rate = sample_rate or 44100

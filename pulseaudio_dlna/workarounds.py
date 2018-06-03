@@ -26,7 +26,6 @@ import requests
 import urllib.parse
 import traceback
 
-
 logger = logging.getLogger('pulseaudio_dlna.workarounds')
 
 
@@ -215,7 +214,7 @@ class YamahaWorkaround(BaseWorkaround):
         headers, data, url = self._generate_request('GET', root, path, value)
         # POST request
         try:
-            logger.debug('Yamaha RC request: '+data)
+            logger.debug('Yamaha RC request: ' + data)
             response = requests.post(
                 url, data.encode(self.ENCODING),
                 headers=headers, timeout=self.REQUEST_TIMEOUT)
@@ -259,7 +258,7 @@ class YamahaWorkaround(BaseWorkaround):
         headers, data, url = self._generate_request('PUT', root, path, value)
         # POST request
         try:
-            logger.debug('Yamaha RC request: '+data)
+            logger.debug('Yamaha RC request: ' + data)
             response = requests.post(
                 url, data.encode(self.ENCODING),
                 headers=headers, timeout=self.REQUEST_TIMEOUT)

@@ -36,6 +36,7 @@ logger = logging.getLogger('pyupnpv2')
 
 
 class ConnectionTimeoutException(Exception):
+
     def __init__(self, command):
         Exception.__init__(
             self,
@@ -45,6 +46,7 @@ class ConnectionTimeoutException(Exception):
 
 
 class ConnectionErrorException(Exception):
+
     def __init__(self, command):
         Exception.__init__(
             self,
@@ -54,6 +56,7 @@ class ConnectionErrorException(Exception):
 
 
 class XmlParsingException(Exception):
+
     def __init__(self, xml):
         Exception.__init__(
             self,
@@ -63,6 +66,7 @@ class XmlParsingException(Exception):
 
 
 class CommandFailedException(Exception):
+
     def __init__(self, command, status_code):
         Exception.__init__(
             self,
@@ -74,6 +78,7 @@ class CommandFailedException(Exception):
 
 
 class UnsupportedActionException(Exception):
+
     def __init__(self, action_name):
         Exception.__init__(
             self,
@@ -83,6 +88,7 @@ class UnsupportedActionException(Exception):
 
 
 class UnsupportedServiceTypeException(Exception):
+
     def __init__(self, service_type):
         Exception.__init__(
             self,
@@ -92,6 +98,7 @@ class UnsupportedServiceTypeException(Exception):
 
 
 class MissingServiceException(Exception):
+
     def __init__(self, service_type):
         Exception.__init__(
             self,
@@ -129,9 +136,12 @@ def _convert_xml_to_dict(xml, strip_namespaces=True):
     from collections import defaultdict
 
     if strip_namespaces:
+
         def _tag_name(element):
             return lxml.etree.QName(element).localname
+
     else:
+
         def _tag_name(element):
             return element.tag
 
@@ -706,6 +716,7 @@ class UpnpMediaRendererFactory(object):
                         'The device "{}" did not specify a valid action list. '
                         'Device skipped! \n{}'.format(
                             device_friendlyname.text, e.xml))
+
         try:
             xml_root = lxml.etree.fromstring(xml)
             return process_xml(url, xml_root, xml)

@@ -31,6 +31,7 @@ logger = logging.getLogger('pulseaudio_dlna.utils.subprocess')
 
 
 class Subprocess(subprocess.Popen):
+
     def __init__(self, cmd, uid=None, gid=None, cwd=None, env=None,
                  *args, **kwargs):
 
@@ -46,6 +47,7 @@ class Subprocess(subprocess.Popen):
             bufsize=1)
 
     def demote(self, uid, gid):
+
         def fn_uid_gid():
             os.setgid(gid)
             os.setuid(uid)
@@ -69,6 +71,7 @@ class Subprocess(subprocess.Popen):
 
 
 class GobjectMainLoopMixin(object):
+
     def __init__(self, *args, **kwargs):
         super(GobjectMainLoopMixin, self).__init__(*args, **kwargs)
         for pipe in [self.stdout, self.stderr]:
@@ -83,19 +86,21 @@ class GobjectMainLoopMixin(object):
 
 
 class ThreadedMixIn(object):
+
     def __init__(self, *args, **kwargs):
         super(ThreadedMixIn, self).__init__(*args, **kwargs)
         self.init_thread(self.stdout)
         self.init_thread(self.stderr)
 
     def init_thread(self, pipe):
+
         def read_all(pipe):
             with pipe:
                 for line in iter(pipe.readline, ''):
                     sys.stdout.write(line)
                     sys.stdout.flush()
 
-        t = threading.Thread(target=read_all, args=(pipe, ))
+        t = threading.Thread(target=read_all, args=(pipe,))
         t.daemon = True
         t.start()
 

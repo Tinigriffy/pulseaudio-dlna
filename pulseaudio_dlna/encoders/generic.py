@@ -40,6 +40,7 @@ class LameMp3Encoder(BitRateMixin, BaseEncoder):
 
 
 class SoxWavEncoder(BaseEncoder):
+
     def __init__(self):
         BaseEncoder.__init__(self)
 
@@ -54,6 +55,7 @@ class SoxWavEncoder(BaseEncoder):
 
 
 class SoxL16Encoder(SamplerateChannelMixin, BaseEncoder):
+
     def __init__(self, sample_rate=None, channels=None):
         BaseEncoder.__init__(self)
         self.sample_rate = sample_rate or 44100

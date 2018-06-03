@@ -29,6 +29,7 @@ logger = logging.getLogger('pulseaudio_dlna.images')
 
 
 class UnknownImageExtension(Exception):
+
     def __init__(self, path):
         Exception.__init__(
             self,
@@ -37,6 +38,7 @@ class UnknownImageExtension(Exception):
 
 
 class ImageNotAccessible(Exception):
+
     def __init__(self, path):
         Exception.__init__(
             self,
@@ -45,6 +47,7 @@ class ImageNotAccessible(Exception):
 
 
 class IconNotFound(Exception):
+
     def __init__(self, icon_name):
         Exception.__init__(
             self,
@@ -53,6 +56,7 @@ class IconNotFound(Exception):
 
 
 class MissingDependencies(Exception):
+
     def __init__(self, message, dependencies):
         Exception.__init__(
             self,
@@ -92,6 +96,7 @@ def get_type_by_filepath(path):
 
 
 class BaseImage(object):
+
     def __init__(self, path, cached=True):
         self.path = path
         self.content_type = None
@@ -116,12 +121,14 @@ class BaseImage(object):
 
 
 class PngImage(BaseImage):
+
     def __init__(self, path, cached=True):
         BaseImage.__init__(self, path, cached)
         self.content_type = 'image/png'
 
 
 class SvgPngImage(BaseImage):
+
     def __init__(self, path, cached=True, size=256):
         try:
             gi.require_version('Rsvg', '2.0')
@@ -153,6 +160,7 @@ class SvgPngImage(BaseImage):
 
 
 class JpgImage(BaseImage):
+
     def __init__(self, path, cached=True):
         BaseImage.__init__(self, path, cached)
         self.content_type = 'image/jpeg'

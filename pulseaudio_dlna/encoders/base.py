@@ -28,6 +28,7 @@ ENCODERS = []
 
 
 class InvalidBitrateException(Exception):
+
     def __init__(self, bit_rate):
         Exception.__init__(
             self,
@@ -36,6 +37,7 @@ class InvalidBitrateException(Exception):
 
 
 class UnsupportedBitrateException(Exception):
+
     def __init__(self, bit_rate, cls):
         Exception.__init__(
             self,
@@ -175,6 +177,7 @@ class NullEncoder(BaseEncoder):
         BaseEncoder.__init__(self)
         self._binary = 'cat'
         self._command = []
+
 
 def load_encoders():
     if len(ENCODERS) == 0:

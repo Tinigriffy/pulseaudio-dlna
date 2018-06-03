@@ -26,11 +26,11 @@ import logging
 
 logger = logging.getLogger('pulseaudio_dlna.covermodes')
 
-
 MODES = {}
 
 
 class UnknownCoverModeException(Exception):
+
     def __init__(self, cover_mode):
         Exception.__init__(
             self,
@@ -136,5 +136,6 @@ def load_modes():
                 if _type is not BaseCoverMode:
                     MODES[_type.IDENTIFIER] = _type
     return None
+
 
 load_modes()

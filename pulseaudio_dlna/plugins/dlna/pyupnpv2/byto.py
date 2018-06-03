@@ -24,7 +24,7 @@ method.
 
 """
 
-from re import sub,RegexFlag
+from re import sub, RegexFlag
 
 
 def repair_xml(xml):

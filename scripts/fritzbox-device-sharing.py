@@ -16,19 +16,15 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
-from __future__ import print_function
-
 from builtins import object
-import requests
-import sys
 import json
+import sys
 
 import pulseaudio_dlna
+import pulseaudio_dlna.codecs
 import pulseaudio_dlna.holder
 import pulseaudio_dlna.plugins.dlna
-import pulseaudio_dlna.codecs
-
+import requests
 
 STEPS_PATTERN = """
     Step 1: Open your Fritzbox web interface (http://fritz.box/)

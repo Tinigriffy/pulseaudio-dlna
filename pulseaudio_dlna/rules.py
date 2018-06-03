@@ -31,6 +31,7 @@ RULES = {}
 
 
 class RuleNotFoundException(Exception):
+
     def __init__(self, identifier):
         Exception.__init__(
             self,
@@ -40,6 +41,7 @@ class RuleNotFoundException(Exception):
 
 @functools.total_ordering
 class BaseRule(object):
+
     def __str__(self):
         return self.__class__.__name__
 
@@ -90,13 +92,13 @@ class DISABLE_PLAY_COMMAND(BaseRule):
 
 
 class REQUEST_TIMEOUT(BaseRule):
+
     def __init__(self, timeout=None):
         self.timeout = float(timeout or 10)
 
     def __str__(self):
         return '{} (timeout="{}")'.format(
             self.__class__.__name__, self.timeout)
-
 
 # class EXAMPLE_PROPERTIES_RULE(BaseRule):
 #     def __init__(self, prop1=None, prop2=None):
@@ -109,6 +111,7 @@ class REQUEST_TIMEOUT(BaseRule):
 
 
 class Rules(list):
+
     def __init__(self, *args, **kwargs):
         list.__init__(self, ())
         self.append(*args)
@@ -157,5 +160,6 @@ def load_rules():
                     logger.debug('  {} = {}'.format(name, _type))
                     RULES[name] = _type
     return None
+
 
 load_rules()

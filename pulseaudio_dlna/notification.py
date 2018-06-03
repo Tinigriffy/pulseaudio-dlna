@@ -33,6 +33,7 @@ def show(title, message, icon=''):
                 title=title,
                 message=message))
 
+
 try:
     notify2.init('pulseaudio_dlna')
 except:

@@ -23,7 +23,6 @@ import psutil
 
 logger = logging.getLogger('pulseaudio_dlna.utils.psutil')
 
-
 __series__ = int(psutil.__version__[:1])
 
 NoSuchProcess = psutil.NoSuchProcess
@@ -41,9 +40,12 @@ def process_iter(*args, **kwargs):
 
 
 if __series__ >= 2:
+
     class Process(psutil.Process):
         pass
+
 else:
+
     class Process(psutil.Process):
 
         def children(self, *args, **kwargs):

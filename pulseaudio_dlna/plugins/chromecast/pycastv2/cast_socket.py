@@ -43,6 +43,7 @@ class ConnectionTerminatedException(Exception):
 
 
 class BaseChromecastSocket(object):
+
     def __init__(self, ip, port):
         self.sock = socket.socket()
         self.sock = ssl.wrap_socket(self.sock)
@@ -106,6 +107,7 @@ class BaseChromecastSocket(object):
 
 
 class CastSocket(BaseChromecastSocket):
+
     def __init__(self, ip, port):
         BaseChromecastSocket.__init__(self, ip, port)
         self.read_listeners = []

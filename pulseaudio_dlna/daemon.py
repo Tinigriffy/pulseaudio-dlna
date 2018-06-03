@@ -35,7 +35,6 @@ import pulseaudio_dlna.utils.psutil as psutil
 
 logger = logging.getLogger('pulseaudio_dlna.daemon')
 
-
 REQUIRED_ENVIRONMENT_VARS = [
     'DISPLAY',
     'DBUS_SESSION_BUS_ADDRESS',
@@ -54,6 +53,7 @@ def missing_env_vars(environment):
 
 
 class Daemon(object):
+
     def __init__(self):
         dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
         setproctitle.setproctitle('pulseaudio-daemon')
@@ -253,6 +253,7 @@ class PulseAudioProcess(psutil.Process):
 
 
 class PulseAudioFinder(object):
+
     @staticmethod
     def get_processes():
         processes = []

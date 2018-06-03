@@ -38,6 +38,7 @@ DISABLE_MIMETYPE_CHECK = False
 
 
 class NoEncoderFoundException(Exception):
+
     def __init__(self):
         Exception.__init__(
             self,
@@ -46,6 +47,7 @@ class NoEncoderFoundException(Exception):
 
 
 class NoSuitableHostFoundException(Exception):
+
     def __init__(self, address):
         Exception.__init__(
             self,
@@ -204,7 +206,7 @@ class BaseRenderer(object):
                 codecs=','.join(
                     [codec.mime_type for codec in self.codecs]),
                 encoders=','.join(missing_encoders),
-            ) +
+            ) + 
             'You can also try to disable the mime type check with the '
             '"--disable-mimetype-check" flag. But be warned: In that way you '
             'can use codecs your device does not support officially and this '
@@ -271,7 +273,7 @@ class BaseRenderer(object):
             if isinstance(codec, pulseaudio_dlna.codecs.L16Codec):
                 value = codec.priority * 100000
                 if codec.sample_rate:
-                    value += 200 - abs(floor((44100 - codec.sample_rate)/1000))
+                    value += 200 - abs(floor((44100 - codec.sample_rate) / 1000))
                 if codec.channels:
                     value *= codec.channels
                 return value

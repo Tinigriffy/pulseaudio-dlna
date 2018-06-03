@@ -109,29 +109,25 @@ Examples:
 
 '''
 
-
-from __future__ import unicode_literals
-
-from future import standard_library
-standard_library.install_aliases()
 from builtins import object
-import docopt
-import logging
-import os
-import threading
-import mimetypes
-import sys
-import subprocess
-import signal
-import requests
-import json
-import shutil
-import traceback
-import re
 import http.server
+import json
+import logging
+import mimetypes
+import os
+import re
+import shutil
+import signal
 import socketserver
+import subprocess
+import sys
+import threading
+import traceback
 
+import docopt
 import pulseaudio_dlna.utils.network
+import requests
+
 import pulseaudio_dlna.plugins.chromecast.pycastv2 as pycastv2
 
 logger = logging.getLogger('chromecast-beam')
@@ -171,6 +167,7 @@ class ChromecastThread(StoppableThread):
         self.desired_volume = 1.0
 
     def run(self):
+
         def play(host, port, url, mime_type, timeout=5):
             cast = pycastv2.MediaPlayerController(host, port, timeout)
             cast.load(url, mime_type=mime_type)
@@ -463,10 +460,10 @@ def get_external_ip():
         return data.get('ip', None)
     return None
 
-
 # Local pulseaudio-dlna installations running in a virutalenv should run this
 #   script as module:
 #     python -m scripts/chromecast-beam 192.168.1.10 ~/videos/test.mkv
+
 
 if __name__ == "__main__":
 

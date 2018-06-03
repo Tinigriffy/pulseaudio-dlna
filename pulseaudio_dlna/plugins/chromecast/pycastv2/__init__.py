@@ -44,6 +44,7 @@ class LaunchErrorException(Exception):
 
 
 class ChannelController(object):
+
     def __init__(self, socket):
         self.request_id = 1
         self.transport_id = 'receiver-0'
@@ -186,6 +187,7 @@ class ChromecastController(object):
 
 
 class LoadCommand(commands.BaseCommand):
+
     def __init__(self, url, mime_type, artist=None, title=None, thumb=None,
                  session_id=None, destination_id=None, namespace=None):
         commands.BaseCommand.__init__(self)

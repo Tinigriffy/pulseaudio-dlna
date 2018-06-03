@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from re import findall,search,RegexFlag
+from re import findall, search, RegexFlag
 
 
 def _get_header_map(header):

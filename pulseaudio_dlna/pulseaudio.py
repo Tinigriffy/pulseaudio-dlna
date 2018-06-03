@@ -15,7 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-
 from builtins import bytes
 from builtins import str
 from builtins import object
@@ -49,6 +48,7 @@ MODULE_NULL_SINK = 'module-null-sink'
 
 
 class PulseAudio(object):
+
     def __init__(self):
         self.streams = []
         self.sinks = []
@@ -236,7 +236,7 @@ class PulseAudio(object):
 
     def get_modules(self):
         process = subprocess.Popen(
-            ['pactl', 'list', 'modules', 'short'],universal_newlines=True,
+            ['pactl', 'list', 'modules', 'short'], universal_newlines=True,
             stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
         if process.returncode == 0:
@@ -278,6 +278,7 @@ class PulseAudio(object):
 
     def delete_null_sink(self, module_id):
         return self.unload_module(module_id)
+
 
 class PulseClientFactory(object):
 
@@ -547,6 +548,7 @@ class PulseStream(object):
 
 
 class PulseBridge(object):
+
     def __init__(self, sink, device):
         self.sink = sink
         self.device = device

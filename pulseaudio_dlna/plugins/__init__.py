@@ -22,6 +22,7 @@ import functools
 
 
 class BasePlugin(object):
+
     def __init__(self):
         self.st_header = None
         self.holder = None
@@ -34,6 +35,7 @@ class BasePlugin(object):
 
     @staticmethod
     def add_device_after(f, *args):
+
         @functools.wraps(f)
         def wrapper(*args, **kwargs):
             device = f(*args, **kwargs)
@@ -41,10 +43,12 @@ class BasePlugin(object):
             if self.holder:
                 self.holder.add_device(device)
             return device
+
         return wrapper
 
     @staticmethod
     def remove_device_after(f, *args):
+
         @functools.wraps(f)
         def wrapper(*args, **kwargs):
             device_id = f(*args, **kwargs)
@@ -52,4 +56,5 @@ class BasePlugin(object):
             if self.holder:
                 self.holder.remove_device(device_id)
             return device_id
+
         return wrapper

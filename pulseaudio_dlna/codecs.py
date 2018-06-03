@@ -37,6 +37,7 @@ CODECS = {}
 
 
 class UnknownBackendException(Exception):
+
     def __init__(self, backend):
         Exception.__init__(
             self,
@@ -45,6 +46,7 @@ class UnknownBackendException(Exception):
 
 
 class UnknownCodecException(Exception):
+
     def __init__(self, codec):
         Exception.__init__(
             self,
@@ -53,6 +55,7 @@ class UnknownCodecException(Exception):
 
 
 class UnsupportedCodecException(Exception):
+
     def __init__(self, codec, backend):
         Exception.__init__(
             self,
@@ -371,5 +374,6 @@ def load_codecs():
                     logger.debug('  {} = {}'.format(_type.IDENTIFIER, _type))
                     CODECS[_type.IDENTIFIER] = _type
     return None
+
 
 load_codecs()

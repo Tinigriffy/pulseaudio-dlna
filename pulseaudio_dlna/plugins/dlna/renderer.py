@@ -36,6 +36,7 @@ logger = logging.getLogger('pulseaudio_dlna.plugins.dlna.renderer')
 
 
 class MissingAttributeException(Exception):
+
     def __init__(self, command):
         Exception.__init__(
             self,

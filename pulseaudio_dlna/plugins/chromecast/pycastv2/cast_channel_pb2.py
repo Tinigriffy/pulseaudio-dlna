@@ -9,15 +9,10 @@ from google.protobuf import descriptor_pb2
 from future.utils import with_metaclass
 # @@protoc_insertion_point(imports)
 
-
-
-
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='cast_channel.proto',
   package='extensions.api.cast_channel',
   serialized_pb=b'\n\x12\x63\x61st_channel.proto\x12\x1b\x65xtensions.api.cast_channel\"\xe3\x02\n\x0b\x43\x61stMessage\x12R\n\x10protocol_version\x18\x01 \x02(\x0e\x32\x38.extensions.api.cast_channel.CastMessage.ProtocolVersion\x12\x11\n\tsource_id\x18\x02 \x02(\t\x12\x16\n\x0e\x64\x65stination_id\x18\x03 \x02(\t\x12\x11\n\tnamespace\x18\x04 \x02(\t\x12J\n\x0cpayload_type\x18\x05 \x02(\x0e\x32\x34.extensions.api.cast_channel.CastMessage.PayloadType\x12\x14\n\x0cpayload_utf8\x18\x06 \x01(\t\x12\x16\n\x0epayload_binary\x18\x07 \x01(\x0c\"!\n\x0fProtocolVersion\x12\x0e\n\nCASTV2_1_0\x10\x00\"%\n\x0bPayloadType\x12\n\n\x06STRING\x10\x00\x12\n\n\x06\x42INARY\x10\x01\"\x0f\n\rAuthChallenge\"B\n\x0c\x41uthResponse\x12\x11\n\tsignature\x18\x01 \x02(\x0c\x12\x1f\n\x17\x63lient_auth_certificate\x18\x02 \x02(\x0c\"~\n\tAuthError\x12\x44\n\nerror_type\x18\x01 \x02(\x0e\x32\x30.extensions.api.cast_channel.AuthError.ErrorType\"+\n\tErrorType\x12\x12\n\x0eINTERNAL_ERROR\x10\x00\x12\n\n\x06NO_TLS\x10\x01\"\xc6\x01\n\x11\x44\x65viceAuthMessage\x12=\n\tchallenge\x18\x01 \x01(\x0b\x32*.extensions.api.cast_channel.AuthChallenge\x12;\n\x08response\x18\x02 \x01(\x0b\x32).extensions.api.cast_channel.AuthResponse\x12\x35\n\x05\x65rror\x18\x03 \x01(\x0b\x32&.extensions.api.cast_channel.AuthErrorB\x02H\x03')
-
-
 
 _CASTMESSAGE_PROTOCOLVERSION = _descriptor.EnumDescriptor(
   name='ProtocolVersion',
@@ -77,7 +72,6 @@ _AUTHERROR_ERRORTYPE = _descriptor.EnumDescriptor(
   serialized_start=577,
   serialized_end=620,
 )
-
 
 _CASTMESSAGE = _descriptor.Descriptor(
   name='CastMessage',
@@ -150,7 +144,6 @@ _CASTMESSAGE = _descriptor.Descriptor(
   serialized_end=407,
 )
 
-
 _AUTHCHALLENGE = _descriptor.Descriptor(
   name='AuthChallenge',
   full_name='extensions.api.cast_channel.AuthChallenge',
@@ -170,7 +163,6 @@ _AUTHCHALLENGE = _descriptor.Descriptor(
   serialized_start=409,
   serialized_end=424,
 )
-
 
 _AUTHRESPONSE = _descriptor.Descriptor(
   name='AuthResponse',
@@ -206,7 +198,6 @@ _AUTHRESPONSE = _descriptor.Descriptor(
   serialized_end=492,
 )
 
-
 _AUTHERROR = _descriptor.Descriptor(
   name='AuthError',
   full_name='extensions.api.cast_channel.AuthError',
@@ -234,7 +225,6 @@ _AUTHERROR = _descriptor.Descriptor(
   serialized_start=494,
   serialized_end=620,
 )
-
 
 _DEVICEAUTHMESSAGE = _descriptor.Descriptor(
   name='DeviceAuthMessage',
@@ -292,25 +282,30 @@ DESCRIPTOR.message_types_by_name['AuthResponse'] = _AUTHRESPONSE
 DESCRIPTOR.message_types_by_name['AuthError'] = _AUTHERROR
 DESCRIPTOR.message_types_by_name['DeviceAuthMessage'] = _DEVICEAUTHMESSAGE
 
+
 class CastMessage(with_metaclass(_reflection.GeneratedProtocolMessageType, _message.Message)):
   DESCRIPTOR = _CASTMESSAGE
 
   # @@protoc_insertion_point(class_scope:extensions.api.cast_channel.CastMessage)
+
 
 class AuthChallenge(with_metaclass(_reflection.GeneratedProtocolMessageType, _message.Message)):
   DESCRIPTOR = _AUTHCHALLENGE
 
   # @@protoc_insertion_point(class_scope:extensions.api.cast_channel.AuthChallenge)
 
+
 class AuthResponse(with_metaclass(_reflection.GeneratedProtocolMessageType, _message.Message)):
   DESCRIPTOR = _AUTHRESPONSE
 
   # @@protoc_insertion_point(class_scope:extensions.api.cast_channel.AuthResponse)
 
+
 class AuthError(with_metaclass(_reflection.GeneratedProtocolMessageType, _message.Message)):
   DESCRIPTOR = _AUTHERROR
 
   # @@protoc_insertion_point(class_scope:extensions.api.cast_channel.AuthError)
+
 
 class DeviceAuthMessage(with_metaclass(_reflection.GeneratedProtocolMessageType, _message.Message)):
   DESCRIPTOR = _DEVICEAUTHMESSAGE
