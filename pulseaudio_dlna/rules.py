@@ -47,7 +47,7 @@ class BaseRule(object):
         if type(other) is type:
             return type(self) is other
         try:
-            if isinstance(other, str&):
+            if isinstance(other, str):
                 return type(self) is RULES[other]
         except:
             raise RuleNotFoundException(other)

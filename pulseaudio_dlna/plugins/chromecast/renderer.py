@@ -30,10 +30,6 @@ import requests
 
 from . import pycastv2
 
-
-standard_library.install_aliases()
-
-
 logger = logging.getLogger('pulseaudio_dlna.plugins.chromecast.renderer')
 
 

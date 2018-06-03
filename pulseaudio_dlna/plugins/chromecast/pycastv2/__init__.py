@@ -22,9 +22,6 @@ import time
 from pulseaudio_dlna.plugins.chromecast.pycastv2 import cast_socket
 from pulseaudio_dlna.plugins.chromecast.pycastv2 import commands
 
-
-standard_library.install_aliases()
-
 logger = logging.getLogger('pycastv2')
 
 
