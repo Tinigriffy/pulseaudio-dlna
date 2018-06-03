@@ -15,14 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import absolute_import
-from __future__ import unicode_literals
-
 from builtins import object
 import logging
 import time
 
-from future import standard_library
 from pulseaudio_dlna.plugins.chromecast.pycastv2 import cast_socket
 from pulseaudio_dlna.plugins.chromecast.pycastv2 import commands
 

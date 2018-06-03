@@ -15,9 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import absolute_import
-from __future__ import unicode_literals
-
 from builtins import map
 from builtins import object
 from builtins import str
@@ -25,15 +22,11 @@ import collections
 import logging
 import urllib.parse
 
-from future import standard_library
 import lxml
 import lxml.builder
 import requests
 
 from . import byto
-
-
-standard_library.install_aliases()
 
 
 logger = logging.getLogger('pyupnpv2')

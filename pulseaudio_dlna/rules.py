@@ -15,16 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
-
 from builtins import object
 from builtins import str
 import functools
 import inspect
 import logging
 import sys
-
-from past.builtins import basestring
 
 
 logger = logging.getLogger('pulseaudio_dlna.rules')
@@ -51,7 +47,7 @@ class BaseRule(object):
         if type(other) is type:
             return type(self) is other
         try:
-            if isinstance(other, basestring):
+            if isinstance(other, str&):
                 return type(self) is RULES[other]
         except:
             raise RuleNotFoundException(other)
@@ -61,7 +57,7 @@ class BaseRule(object):
         if type(other) is type:
             return type(self) > other
         try:
-            if isinstance(other, basestring):
+            if isinstance(other, str):
                 return type(self) > RULES[other]
         except:
             raise RuleNotFoundException()
@@ -134,7 +130,7 @@ class Rules(list):
                     if hasattr(rule, k) and k not in attributes:
                         setattr(rule, k, v)
                 self._add_rule(rule)
-            elif isinstance(arg, basestring):
+            elif isinstance(arg, str):
                 try:
                     rule = RULES[arg]()
                     self._add_rule(rule)

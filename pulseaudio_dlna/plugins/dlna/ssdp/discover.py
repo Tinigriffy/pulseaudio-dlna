@@ -20,18 +20,15 @@ from __future__ import division
 from builtins import object
 from builtins import range
 import logging
+from math import floor
+from operator import floordiv
 import socket
 import threading
 import traceback
 
 import chardet
-from future import standard_library
-from past.utils import old_div
 import pulseaudio_dlna.plugins.dlna.ssdp
 import pulseaudio_dlna.utils.network
-
-
-standard_library.install_aliases()
 
 
 logger = logging.getLogger('pulseaudio_dlna.discover')
@@ -107,7 +104,7 @@ class SSDPDiscover(object):
 
         for i in range(1, ssdp_amount + 1):
             t = threading.Timer(
-                old_div(float(i), 2), self._send_discover, args=[sock, ssdp_mx])
+                floor(i / 2), self._send_discover, args=[sock, ssdp_mx])
             t.start()
 
         while True:

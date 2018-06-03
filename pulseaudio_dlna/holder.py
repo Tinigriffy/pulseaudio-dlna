@@ -15,8 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
-
 from builtins import object
 import logging
 import signal
@@ -24,12 +22,9 @@ import threading
 import time
 import traceback
 
-from future import standard_library
 import requests
 import setproctitle
 
-
-standard_library.install_aliases()
 
 logger = logging.getLogger('pulseaudio_dlna.holder')
 

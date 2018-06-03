@@ -15,16 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import division
-from __future__ import unicode_literals
-from __future__ import with_statement
-
 from builtins import object
 import logging
+from math import floor
 import tempfile
 
 import gi
-from past.utils import old_div
 
 
 logger = logging.getLogger('pulseaudio_dlna.images')
@@ -152,8 +148,8 @@ class SvgPngImage(BaseImage):
 
         context = cairo.Context(image_surface)
         context.scale(
-            old_div(float(size), rsvg_handle.props.height),
-            old_div(float(size), rsvg_handle.props.width)
+            floor(size / rsvg_handle.props.height),
+            floor(size /rsvg_handle.props.width)
         )
         rsvg_handle.render_cairo(context)
         image_surface.write_to_png(tmp_file.name)

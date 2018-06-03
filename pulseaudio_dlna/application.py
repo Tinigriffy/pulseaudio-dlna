@@ -15,9 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import print_function
-from __future__ import unicode_literals
-
 from builtins import object
 from builtins import str
 import json
@@ -69,7 +66,7 @@ class Application(object):
 
     def shutdown(self, signal_number=None, frame=None):
         if not self.is_terminating:
-            print('Application is shutting down ...')
+            logger.info('Application is shutting down ...')
             self.is_terminating = True
 
             for process in self.processes:
@@ -85,7 +82,7 @@ class Application(object):
             start_time = time.time()
             while True:
                 if time.time() - start_time >= self.SHUTDOWN_TIMEOUT:
-                    print('Terminating remaining subprocesses ...')
+                    logger.info('Terminating remaining subprocesses ...')
                     for process in self.processes:
                         if process is not None and process.is_alive():
                             os.kill(process.pid, signal.SIGKILL)

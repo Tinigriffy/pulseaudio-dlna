@@ -15,8 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
-
 from builtins import object
 import logging
 import socket
@@ -25,14 +23,9 @@ import struct
 import time
 
 import chardet
-from future import standard_library
 from gi.repository import GObject
 import pulseaudio_dlna.plugins.dlna.ssdp
 import setproctitle
-
-
-standard_library.install_aliases()
-
 
 
 logger = logging.getLogger('pulseaudio_dlna.plugins.dlna.ssdp')

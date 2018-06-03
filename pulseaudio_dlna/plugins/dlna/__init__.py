@@ -15,21 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
-
 import logging
 import threading
 import traceback
 
-from future import standard_library
 import pulseaudio_dlna.plugins
 from pulseaudio_dlna.plugins.dlna.renderer import DLNAMediaRendererFactory
 import pulseaudio_dlna.plugins.dlna.ssdp
 import pulseaudio_dlna.plugins.dlna.ssdp.discover
 import pulseaudio_dlna.plugins.dlna.ssdp.listener
-
-
-standard_library.install_aliases()
 
 
 logger = logging.getLogger('pulseaudio_dlna.plugins.dlna')

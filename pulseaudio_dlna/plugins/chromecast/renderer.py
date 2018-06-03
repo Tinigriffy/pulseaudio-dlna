@@ -15,9 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import absolute_import
-from __future__ import unicode_literals
-
 from builtins import object
 from builtins import str
 import logging
@@ -25,7 +22,6 @@ import socket
 import traceback
 import urllib.parse
 
-from future import standard_library
 import lxml
 import pulseaudio_dlna.codecs
 import pulseaudio_dlna.plugins.renderer
