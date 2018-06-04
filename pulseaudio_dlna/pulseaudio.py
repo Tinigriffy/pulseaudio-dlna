@@ -39,6 +39,7 @@ import pulseaudio_dlna.notification
 import pulseaudio_dlna.plugins.renderer
 import pulseaudio_dlna.utils.encoding
 import setproctitle
+from pulseaudio_dlna.utils.encoding import _DbusByteArray2Str
 
 
 logger = logging.getLogger('pulseaudio_dlna.pulseaudio')
@@ -291,11 +292,11 @@ class PulseClientFactory(object):
             icon_bytes = properties.get('application.icon_name', [])
             binary_bytes = properties.get('application.process.binary', [])
             return PulseClient(
-                object_path=str(client_path),
-                index=str(obj.Get('org.PulseAudio.Core1.Client', 'Index')),
-                name=str(name_bytes),
-                icon=str(icon_bytes),
-                binary=str(binary_bytes),
+                object_path=client_path,
+                index=obj.Get('org.PulseAudio.Core1.Client', 'Index'),
+                name=_DbusByteArray2Str(name_bytes),
+                icon=_DbusByteArray2Str(icon_bytes),
+                binary=_DbusByteArray2Str(binary_bytes),
             )
         except dbus.exceptions.DBusException:
             logger.error(
@@ -392,14 +393,13 @@ class PulseSinkFactory(object):
 
             properties = obj.Get('org.PulseAudio.Core1.Device', 'PropertyList',byte_arrays=True)
             description_bytes = properties.get('device.description', [])
-            module_path = str(
-                obj.Get('org.PulseAudio.Core1.Device', 'OwnerModule'))
+            module_path = obj.Get('org.PulseAudio.Core1.Device', 'OwnerModule')
 
             return PulseSink(
-                object_path=str(object_path),
-                index=str(obj.Get('org.PulseAudio.Core1.Device', 'Index')),
-                name=str(obj.Get('org.PulseAudio.Core1.Device', 'Name')),
-                label=str(description_bytes),
+                object_path=object_path,
+                index=obj.Get('org.PulseAudio.Core1.Device', 'Index'),
+                name=obj.Get('org.PulseAudio.Core1.Device', 'Name'),
+                label=_DbusByteArray2Str(description_bytes),
                 module=PulseModuleFactory.new(bus, module_path),
             )
         except dbus.exceptions.DBusException:

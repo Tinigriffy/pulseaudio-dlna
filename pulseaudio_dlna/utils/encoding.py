@@ -21,6 +21,7 @@ import logging
 import sys
 
 import chardet
+import dbus
 
 
 logger = logging.getLogger('pulseaudio_dlna.plugins.utils.encoding')
@@ -33,6 +34,14 @@ class NotBytesException(Exception):
             self,
             'The specified variable is {}". '
             'Must be bytes.'.format(type(var))
+        )
+class NotDbusBytesArrayException(Exception):
+
+    def __init__(self, var):
+        Exception.__init__(
+            self,
+            'The specified variable is {}". '
+            'Must be dbus.ByteArray.'.format(type(var))
         )
 
 
@@ -72,3 +81,8 @@ def _bytes2hex(bytes, seperator=':'):
 
 def _hex2bytes(hex, seperator=':'):
     return b''.join(chr(int(h, 16)) for h in hex.split(seperator))
+
+def _DbusByteArray2Str(ba):
+    if type(ba) is dbus.ByteArray:
+        return ba.strip(b'\x00').decode()
+    return ba
